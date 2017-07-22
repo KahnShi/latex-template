@@ -42,7 +42,7 @@ State: $s = [x_0, y_0, z_0, \varphi_0, \theta_0, \psi_0, q_1, q_2, ..., q_n]$.
 \end{equation}
 
 \begin{equation}
-  \omega = \dot{\phi} = [\dot{\varphi_0}, \dot{\theta_0}, \dot{\psi_0}]
+  \omega = T_b \dot{\phi} = T_b [\dot{\varphi_0}, \dot{\theta_0}, \dot{\psi_0}]
 \end{equation}
 
 \begin{equation}
@@ -86,17 +86,23 @@ State: $s = [x_0, y_0, z_0, \varphi_0, \theta_0, \psi_0, q_1, q_2, ..., q_n]$.
 \end{equation}
 
 \begin{equation}
-  D_{12} = D_{21}^T = -\sum_{i=1}^{n}(m_{l_i} S(R_b P_{bl_i}^b))
+  D_{12} = D_{21}^T = -\sum_{i=1}^{n}(m_{l_i} S(R_b P_{bl_i}^b) T_b)
 \end{equation}
 
 \begin{equation}
   D_{13} = D_{31}^T = \sum_{i=1}^{n}(m_{l_i} R_b J_p^{l_i})
 \end{equation}
 
-\begin{equation}
-  D_{22} = \sum_{i=1}^{n}(m_{l_i} s(R_b P_{bl_i}^b)^T s(R_b P_{bl_i}^b)
-  + R_b R_{bl_i}^b H_{l_i} R_b^{bl_i} R_b^T)
-\end{equation}
+\begin{eqnarray}
+  & D_{22} = \sum_{i=1}^{n}(m_{l_i} T_b^T s(R_b P_{bl_i}^b)^T s(R_b P_{bl_i}^b) T_b \\ \nonumber
+  & + R_b R_{bl_i}^b H_{l_i} R_b^{bl_i} R_b^T)
+\end{eqnarray}
+
+\begin{eqnarray}
+  D_{23} = \sum_{i=1}^{n}(T_b^T R_b R_{l_i}^b H_{l_i} R_b^{l_i} J_\omega^{l_i} \\
+  \nonumber
+  - m_{l_i} T_b^T s(R_b P_{bl_i}^b)^T R_b J_\omega^{l_i})
+\end{eqnarray}
 
 \begin{equation}
   D_{33} = \sum_{i=1}^{n}(m_{l_i} {J_p^{l_i}}^T J_p^{l_i}
@@ -119,15 +125,16 @@ State: $s = [x_0, y_0, z_0, \varphi_0, \theta_0, \psi_0, q_1, q_2, ..., q_n]$.
   u = [f_1, f_2, ..., f_n, q_1, q_2, ..., q_n]^T
 \end{equation}
 
+Here we use the quadrotor shape as the example:
 \begin{equation}
   B(u) = \begin{bmatrix}
-    0 & 0 & 0 & 0 ... 0 \\
-    0 & 0 & 0 & 0 ... 0 \\
-    1 & 1 & 1 & 1 ... 1 \\
-    0 & d & 0 & -d ... 0 \\
-    -d & 0 & d & 0 ... 0 \\
-    c & -c & c & -c ... 0 \\
-    0 & 0 & 0 & 0 ... 0 & \bm{I_n*n}
+    0 & 0 & 0 & 0 & \bm{0_{n*6}} \\
+    0 & 0 & 0 & 0  \\
+    1 & 1 & 1 & 1  \\
+    0 & d & 0 & -d \\
+    -d & 0 & d & 0 \\
+    c & -c & c & -c \\
+    0 & 0 & 0 & 0 & \bm{I_{n*n}}
   \end{bmatrix}
 \end{equation}
 
