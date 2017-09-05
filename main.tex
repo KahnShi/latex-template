@@ -134,7 +134,41 @@ Here we use the quadrotor shape as the example:
   \end{bmatrix}
 \end{equation}
 
+\begin{eqnarray}
+  &\tau^{(root)} = \sum_{i=1}^{4}(I_i^{(root)} \dot{\omega_i}^{(root)} \\  \nonumber
+  & + \omega_i^{(root)} \times I_i^{(root)} \omega_i^{(root)}
+  + \dot{I_i}^{(root)} \omega_i^{(root)})
+\end{eqnarray}
 
+\begin{equation}
+  \tau^{(root)} =
+  \sum_{i=1}^{4}
+  {l_{c_i}^{(root)}
+    \times  (\left[ \begin{array}{c}
+        0 \\
+        0 \\
+        f_i
+      \end{array}\right]
+    - R_{world}^{root}  \left[ \begin{array}{c}
+        0 \\
+        0 \\
+        m_i*g
+      \end{array}\right] )}
+\end{equation}
+
+\begin{equation}
+  \omega_i^{(root)} = \omega_{root}^{(root)} + J_q^i \dot{q}
+\end{equation}
+
+\begin{equation}
+  \dot{\omega}_i^{(root)} = \dot{\omega}_{root}^{(root)} + J_q^i \ddot{q}
+\end{equation}
+
+Here, $I_i^{(root)}$ means the inertial tensor of i-th link, with respect to root link. We use parallel-axis method to calculate it, the distance from i-th link to root is the function of joints angles. So $I_i^{(root)}$ is time-variant.
+
+$\omega_i^{(root)}$ means angular velocity of i-th link in root link frame.
+
+$l_{c_i}^{(root)}$ means the distance from center of i-th link to the root.
 
 \section{Dynamic Tennis Swing Motion}
 
