@@ -157,12 +157,31 @@ Here we use the quadrotor shape as the example:
 \end{equation}
 
 \begin{equation}
+  \tau^{(root)} =
+  \frac{\partial L^{(root)}}{\partial t} =
+  \frac{\partial \sum_{i=1}^{4}
+  {l_{c_i}^{(root)}
+    \times  (m_i v_i)
+    + I_i \omega_i}}
+  {\partial t}
+\end{equation}
+
+\begin{equation}
+  l_{c_i}^{(root)} = f_k (p^{(root)}, {q})
+\end{equation}
+
+\begin{equation}
+  v_i^{(root)} = v_{root}^{(root)} + J_p^i \dot{q}
+\end{equation}
+
+\begin{equation}
   \omega_i^{(root)} = \omega_{root}^{(root)} + J_q^i \dot{q}
 \end{equation}
 
 \begin{equation}
   \dot{\omega}_i^{(root)} = \dot{\omega}_{root}^{(root)} + J_q^i \ddot{q}
 \end{equation}
+
 
 Here, $I_i^{(root)}$ means the inertial tensor of i-th link, with respect to root link. We use parallel-axis method to calculate it, the distance from i-th link to root is the function of joints angles. So $I_i^{(root)}$ is time-variant.
 
