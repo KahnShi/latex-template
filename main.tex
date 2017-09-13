@@ -196,6 +196,18 @@ Here we use the quadrotor shape as the example:
   \dot{s} = f(s, q, [u_1, u_2, u_3, u_4]^T, t)
 \end{equation}
 
+\begin{equation}
+  \dot{s} = f(s, u)
+\end{equation}
+
+\begin{equation}
+  s_{k+1} = s_k + f(s_k, u_k) {\delta t}
+\end{equation}
+
+\begin{equation}
+  s_{k+1} = A_k s_k + B_k u_k
+\end{equation}
+
 Here, $I_i^{(root)}$ means the inertial tensor of i-th link, with respect to root link. We use parallel-axis method to calculate it, the distance from i-th link to root is the function of joints angles. So $I_i^{(root)}$ is time-variant.
 
 $\omega_i^{(root)}$ means angular velocity of i-th link in root link frame.
