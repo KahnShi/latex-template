@@ -147,7 +147,7 @@ Here we use the quadrotor shape as the example:
     \times  (\left[ \begin{array}{c}
         0 \\
         0 \\
-        f_i
+        u_i
       \end{array}\right]
     - R_{world}^{root}  \left[ \begin{array}{c}
         0 \\
@@ -182,6 +182,19 @@ Here we use the quadrotor shape as the example:
   \dot{\omega}_i^{(root)} = \dot{\omega}_{root}^{(root)} + J_q^i \ddot{q}
 \end{equation}
 
+\begin{equation}
+  s = \left[ \begin{array}{c}
+        \begin{array}{c}[p_x, p_y, p_z]^T\end{array} \\ \nonumber
+        \begin{array}{c}[v_x, v_y, v_z]^T\end{array} \\ \nonumber
+        \begin{array}{c}[\psi, \theta, \phi]^T\end{array} \\ \nonumber
+        \begin{array}{c}[w_x, w_y, w_z]^T\end{array}
+    \end{array}\right]
+\end{equation}
+
+
+\begin{equation}
+  \dot{s} = f(s, q, [u_1, u_2, u_3, u_4]^T, t)
+\end{equation}
 
 Here, $I_i^{(root)}$ means the inertial tensor of i-th link, with respect to root link. We use parallel-axis method to calculate it, the distance from i-th link to root is the function of joints angles. So $I_i^{(root)}$ is time-variant.
 
